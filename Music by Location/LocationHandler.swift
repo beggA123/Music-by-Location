@@ -33,7 +33,13 @@ class LocationHandler: NSObject, CLLocationManagerDelegate, ObservableObject {
                     self.lastKnownLocation = "Could not perform lookup of coordinates"
                 } else {
                     if let firstPlacemark = placemarks?[0] {
-                        self.lastKnownLocation = firstPlacemark.locality ?? "Could not find location"
+                        self.lastKnownLocation = """
+                                                \(firstPlacemark.country ?? "Could not find country")
+                                                \(firstPlacemark.administrativeArea ?? "Could not find administrative area")
+                                                \(firstPlacemark.region ?? "Could not find region")
+                                                \(firstPlacemark.locality ?? "Could not find locality")
+                                                \(firstPlacemark.postalCode ?? "Could not find postal code")
+                                                """
                     }
                 }
             })

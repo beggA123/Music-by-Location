@@ -12,8 +12,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(locationHandler.lastKnownLocation)
-            Spacer()
+            Form {
+                Text(locationHandler.lastKnownLocation)
+                    .padding()
+            }
             Button("Find Music", action: {
                 locationHandler.requestLocation()
             })
